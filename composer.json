@@ -1,10 +1,16 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "maikama8/voip-asterisk-dashboard",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
-    "keywords": ["laravel", "framework"],
+    "description": "VoIP Call Center Dashboard with Asterisk AMI integration - Real-time monitoring, agent management, and call control",
+    "keywords": ["laravel", "voip", "asterisk", "call-center", "dashboard", "ami", "sip", "pbx"],
     "license": "MIT",
+    "authors": [
+        {
+            "name": "maikama8",
+            "role": "Creator & Lead Developer"
+        }
+    ],
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",

@@ -263,7 +263,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📧 Contact
 
-Project Link: [https://github.com/maikama8/voip-asterisk-dashboard](https://github.com/maikama8/voip-asterisk-dashboard)
+**Author**: maikama8  
+**GitHub**: [@maikama8](https://github.com/maikama8)  
+**Project Link**: [https://github.com/maikama8/voip-asterisk-dashboard](https://github.com/maikama8/voip-asterisk-dashboard)
 
 ## 🗺️ Roadmap
 
