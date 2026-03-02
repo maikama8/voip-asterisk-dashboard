@@ -1,49 +1,50 @@
 # VoIP Call Center Dashboard
 
-A modern, real-time web-based dashboard for monitoring and managing VoIP/call center operations with Asterisk integration.
+A modern, real-time call center dashboard with Asterisk AMI integration built with Laravel 12 and Tailwind CSS.
 
-![Laravel](https://img.shields.io/badge/Laravel-12.x-red)
-![PHP](https://img.shields.io/badge/PHP-8.2+-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Laravel](https://img.shields.io/badge/Laravel-12-red.svg)
+![PHP](https://img.shields.io/badge/PHP-8.2+-purple.svg)
 
-## Features
+## 🌟 Features
 
-### 🎯 Core Features
-- **Real-time Dashboard** - Live call monitoring with auto-refresh
-- **Call Management** - Hangup and transfer calls via Asterisk AMI
-- **Agent Management** - Monitor agent status and performance
-- **Queue Management** - Track call queues and wait times
-- **Reports & Analytics** - Call history, daily stats, and performance metrics
-- **User Management** - Role-based access (Admin, Supervisor, Agent)
+### Real-time Monitoring
+- **Live Dashboard** - Real-time call statistics and agent status
+- **Active Calls** - Monitor ongoing calls with duration tracking
+- **Agent Status** - Track agent availability and performance
+- **Queue Management** - Monitor call queues and wait times
 
-### 🔌 Asterisk Integration
-- **AMI Connection** - Real-time connection to Asterisk Manager Interface
-- **Connection Testing** - Test and verify AMI credentials
-- **SIP Peer Discovery** - View connected SIP devices
-- **Live Status Monitoring** - Real connection status indicators
+### Asterisk Integration
+- **AMI Connection** - Direct integration with Asterisk Manager Interface
+- **Connection Testing** - Test and verify AMI connectivity in real-time
+- **SIP Peer Discovery** - Automatically detect and display SIP devices
+- **Call Control** - Hangup and transfer calls directly from the dashboard
 
-### 👥 User Roles
-- **Admin** - Full access to all features
-- **Supervisor** - Access to monitoring and reports
-- **Agent** - Limited access to dashboard
+### Management Features
+- **Agent Management** - Add, edit, and monitor call center agents
+- **Queue Configuration** - Manage call queues and routing
+- **User Management** - Role-based access control (Admin, Supervisor, Agent)
+- **Call History** - Searchable call logs with filtering
+- **Reports & Analytics** - Daily statistics and performance metrics
 
-## Screenshots
+### User Interface
+- **Responsive Design** - Works on desktop, tablet, and mobile
+- **Real-time Updates** - Auto-refresh every 5 seconds
+- **Visual Indicators** - Color-coded status badges
+- **Toast Notifications** - User-friendly feedback messages
+
+## 📸 Screenshots
 
 ### Dashboard
-Real-time monitoring with live statistics and active calls.
+Real-time overview of call center operations with live statistics.
 
 ### Settings
-Configure Asterisk AMI connection with real-time testing.
+Configure Asterisk AMI connection with live testing and validation.
 
-## Tech Stack
+### Agent Management
+Monitor and manage call center agents with status tracking.
 
-- **Backend**: Laravel 12 (PHP 8.2+)
-- **Database**: SQLite (easily switchable to MySQL/PostgreSQL)
-- **Frontend**: Blade Templates + Tailwind CSS + Alpine.js
-- **VoIP**: Asterisk AMI Integration
-- **Authentication**: Laravel Sanctum
-
-## Installation
+## 🚀 Quick Start
 
 ### Prerequisites
 
@@ -52,12 +53,12 @@ Configure Asterisk AMI connection with real-time testing.
 - Node.js & NPM (for asset compilation)
 - Asterisk server with AMI enabled (optional for development)
 
-### Quick Start
+### Installation
 
 1. **Clone the repository**
 ```bash
-git clone <repository-url>
-cd voip-call-center-dashboard
+git clone https://github.com/maikama8/voip-asterisk-dashboard.git
+cd voip-asterisk-dashboard
 ```
 
 2. **Install dependencies**
@@ -66,23 +67,24 @@ composer install
 npm install
 ```
 
-3. **Environment setup**
+3. **Configure environment**
 ```bash
 cp .env.example .env
 php artisan key:generate
 ```
 
-4. **Configure database**
-```bash
-# SQLite (default)
-touch database/database.sqlite
-
-# Or configure MySQL/PostgreSQL in .env
+4. **Configure Asterisk AMI** (edit `.env`)
+```env
+ASTERISK_AMI_HOST=127.0.0.1
+ASTERISK_AMI_PORT=5038
+ASTERISK_AMI_USERNAME=admin
+ASTERISK_AMI_SECRET=secret
 ```
 
-5. **Run migrations and seed data**
+5. **Setup database**
 ```bash
-php artisan migrate:fresh --seed
+touch database/database.sqlite
+php artisan migrate --seed
 ```
 
 6. **Build assets**
@@ -95,22 +97,20 @@ npm run build
 php artisan serve
 ```
 
-8. **Access the application**
+8. **Access the dashboard**
 ```
 http://localhost:8000
 ```
 
-## Default Credentials
+### Default Credentials
 
-After seeding, you can login with:
+- **Admin**: admin@voip.local / password
+- **Agent 1**: john@voip.local / password
+- **Agent 2**: jane@voip.local / password
 
-- **Admin**: `admin@voip.local` / `password`
-- **Agent 1**: `john@voip.local` / `password`
-- **Agent 2**: `jane@voip.local` / `password`
+## 🔧 Configuration
 
-## Asterisk Configuration
-
-### Configure AMI in Asterisk
+### Asterisk AMI Setup
 
 1. Edit `/etc/asterisk/manager.conf`:
 ```ini
@@ -132,62 +132,49 @@ write = system,call,log,verbose,command,agent,user,config
 asterisk -rx "manager reload"
 ```
 
-3. Configure in `.env`:
-```env
-ASTERISK_AMI_HOST=127.0.0.1
-ASTERISK_AMI_PORT=5038
-ASTERISK_AMI_USERNAME=admin
-ASTERISK_AMI_SECRET=secret
-```
+3. Test connection in Settings page
 
-4. Test connection in Settings page
+For detailed setup instructions, see [ASTERISK_SETUP.md](ASTERISK_SETUP.md)
 
-### Docker Setup (Optional)
+## 📚 Documentation
 
-```bash
-docker run -d \
-  --name asterisk \
-  -p 5038:5038 \
-  -p 5060:5060/udp \
-  andrius/asterisk
-```
+- [Asterisk Setup Guide](ASTERISK_SETUP.md) - Complete Asterisk installation and configuration
+- [SIP Connection Feature](SIP_CONNECTION_FEATURE.md) - Detailed feature documentation
+- [API Documentation](#api-endpoints) - API endpoint reference
 
-See [ASTERISK_SETUP.md](ASTERISK_SETUP.md) for detailed instructions.
+## 🎯 Usage
 
-## Development
+### Testing Connection
 
-### Running in Development Mode
+1. Navigate to **Settings** in the sidebar
+2. Enter your Asterisk AMI credentials
+3. Click **Test Connection**
+4. View connection status and details
+5. Click **Save Settings** to persist configuration
 
-```bash
-# Start Laravel server
-php artisan serve
+### Monitoring Calls
 
-# Watch for asset changes (in another terminal)
-npm run dev
-```
+1. Go to **Dashboard** for real-time overview
+2. View **Active Calls** for detailed call information
+3. Use **Call History** to search past calls
+4. Check **Reports** for analytics
 
-### Running Tests
+### Managing Agents
 
-```bash
-php artisan test
-```
+1. Navigate to **Agents** (Admin only)
+2. View agent status and performance
+3. Add or edit agent profiles
+4. Monitor agent availability
 
-### Code Style
-
-```bash
-# Fix code style
-./vendor/bin/pint
-```
-
-## API Endpoints
+## 🔌 API Endpoints
 
 ### Dashboard
 - `GET /api/dashboard/stats` - Overall statistics
-- `GET /api/dashboard/active-calls` - Active calls list
-- `GET /api/dashboard/agents` - Agent status
+- `GET /api/dashboard/active-calls` - List active calls
+- `GET /api/dashboard/agents` - Agent status list
 - `GET /api/dashboard/queues` - Queue information
 
-### Call Management
+### Call Control
 - `POST /api/calls/hangup` - Hangup a call
 - `POST /api/calls/transfer` - Transfer a call
 
@@ -198,93 +185,87 @@ php artisan test
 ### Settings
 - `POST /api/settings/test-connection` - Test AMI connection
 - `POST /api/settings/asterisk` - Update AMI settings
-- `GET /api/settings/sip-peers` - Get SIP peers
+- `GET /api/settings/sip-peers` - Get SIP peer list
 
-## Database Schema
+## 🏗️ Tech Stack
 
-### Users
-- Stores user accounts with roles (admin, supervisor, agent)
+- **Backend**: Laravel 12 (PHP 8.2+)
+- **Frontend**: Blade Templates + Tailwind CSS
+- **Database**: SQLite (easily switchable to MySQL/PostgreSQL)
+- **Real-time**: Auto-refresh with AJAX
+- **VoIP**: Asterisk AMI integration
 
-### Agents
-- Agent profiles linked to users with extension and SIP peer info
+## 📁 Project Structure
 
-### Queues
-- Call queues with Asterisk queue mapping
+```
+app/
+├── Http/Controllers/
+│   ├── Api/
+│   │   ├── CallController.php       # Call control actions
+│   │   ├── DashboardController.php  # Dashboard data
+│   │   └── ReportController.php     # Reports and analytics
+│   ├── AuthController.php           # Authentication
+│   └── SettingsController.php       # Settings management
+├── Models/
+│   ├── User.php                     # User with roles
+│   ├── Agent.php                    # Agent profiles
+│   ├── Queue.php                    # Call queues
+│   └── Call.php                     # Call records
+└── Services/
+    └── AsteriskAMIService.php       # AMI connection handler
 
-### Calls
-- Call records with CDR data (caller ID, destination, status, duration)
+resources/views/
+├── layouts/
+│   └── app.blade.php                # Main layout
+├── dashboard.blade.php              # Dashboard view
+├── settings.blade.php               # Settings page
+├── agents/                          # Agent management
+├── calls/                           # Call views
+├── queues/                          # Queue management
+└── reports/                         # Reports and analytics
+```
 
-## Features in Detail
-
-### Real-time Dashboard
-- Live call statistics (active, waiting, total)
-- Online agent count
-- Active calls list with status
-- Agent status monitoring
-- Auto-refresh every 5 seconds
-
-### Call Management
-- View active calls in real-time
-- Hangup calls directly from dashboard
-- Transfer calls to different extensions
-- Call history with search and filters
-
-### Reports & Analytics
-- Daily call statistics
-- Agent performance metrics
-- Call history with date range filters
-- Export capabilities (coming soon)
-
-### Settings
-- Asterisk AMI configuration
-- Real-time connection testing
-- SIP peer discovery
-- System information display
-
-## Security
+## 🔐 Security
 
 - Environment variables for sensitive data
-- CSRF protection on all forms
 - Role-based access control
+- CSRF protection
 - Session-based authentication
-- API authentication via Sanctum
+- Input validation and sanitization
 
-## Troubleshooting
+**Production Recommendations:**
+- Use strong passwords
+- Enable HTTPS/TLS
+- Restrict AMI access by IP
+- Regular security updates
+- Database backups
 
-### Connection Issues
-
-**AMI Connection Failed:**
-- Check if Asterisk is running
-- Verify AMI port (5038) is open
-- Check firewall settings
-- Verify credentials in manager.conf
-
-**Database Errors:**
-- Run `php artisan migrate:fresh --seed`
-- Check database permissions
-- Verify .env database configuration
-
-**Asset Issues:**
-- Run `npm install`
-- Run `npm run build`
-- Clear browser cache
-
-## Contributing
+## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
-## License
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-This project is open-sourced software licensed under the [MIT license](LICENSE).
+## 📝 License
 
-## Support
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-For issues and questions:
-- Check [ASTERISK_SETUP.md](ASTERISK_SETUP.md) for Asterisk configuration
-- Check [SIP_CONNECTION_FEATURE.md](SIP_CONNECTION_FEATURE.md) for connection details
-- Open an issue on GitHub
+## 🙏 Acknowledgments
 
-## Roadmap
+- Laravel Framework
+- Asterisk PBX
+- Tailwind CSS
+- All contributors and users
+
+## 📧 Contact
+
+Project Link: [https://github.com/maikama8/voip-asterisk-dashboard](https://github.com/maikama8/voip-asterisk-dashboard)
+
+## 🗺️ Roadmap
 
 - [ ] WebSocket integration for real-time updates
 - [ ] Call recording playback
@@ -293,12 +274,14 @@ For issues and questions:
 - [ ] Call spy/monitor features
 - [ ] CDR file parsing
 - [ ] Multi-tenant support
-- [ ] API documentation (Swagger)
+- [ ] REST API documentation
+- [ ] Docker deployment
+- [ ] Kubernetes support
 
-## Credits
+## ⚠️ Development Mode
 
-Built with Laravel, Tailwind CSS, and Alpine.js.
+The dashboard works without an Asterisk server using seeded data. AMI calls will fail gracefully, allowing you to develop and demo the UI without a live PBX system.
 
-## Author
+---
 
-Created for VoIP call center management and monitoring.
+Made with ❤️ for the VoIP community
