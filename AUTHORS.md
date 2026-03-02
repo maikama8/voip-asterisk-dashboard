@@ -2,7 +2,7 @@
 
 ## Project Creator & Lead Developer
 
-**maikama8**
+**Abdulrasheed**
 - GitHub: [@maikama8](https://github.com/maikama8)
 - Role: Creator, Lead Developer, Maintainer
 - Contributions: Full project architecture, implementation, and documentation
@@ -16,7 +16,7 @@
 
 ## Contributions
 
-This project was created and is maintained by maikama8. Contributions from the community are welcome!
+This project was created and is maintained by Abdulrasheed. Contributions from the community are welcome!
 
 If you'd like to contribute:
 1. Fork the repository
